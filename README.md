@@ -50,12 +50,40 @@ sequenceDiagram
     T-->>A: Confirmation
     A->>U: "Your appointment is booked with Dr. Sara"
 ```
+#Langgraph Flow Diagram
+```
+          +---------------------+
+          |        START        |
+          +---------------------+
+                    |
+                    v
+   +-------------------------------+
+   |      response_with_tools      |
+   +-------------------------------+
+                    |
+                    v
+          +-----------------+
+          |    tool_node    |
+          +-----------------+
+              /         \
+             /           \
+            v             v
++-------------------+   +-------------------+
+| response_without_ |   |        END        |
+|      _tools       |   +-------------------+
++-------------------+
+        |
+        v
++-------------------+
+|        END        |
++-------------------+
 
+```
 ---
 
 ## 🛠️ Tech Stack
 
-* [LangChain](https://www.langchain.com/) → LLM orchestration
+* [LangChain + Langgraph](https://www.langchain.com/) → LLM orchestration
 * [FastAPI](https://fastapi.tiangolo.com/) → API layer
 * [Qdrant](https://qdrant.tech/) → Vector DB for RAG
 * [Uvicorn](https://www.uvicorn.org/) → ASGI server
@@ -147,9 +175,11 @@ Simply type a message (e.g., *“I have a skin disease”*) in the chat box.
 * [ ] Deploy with Docker + Nginx + Cloud (AWS/DigitalOcean)
 * [ ] Add a doctor registration page and injest data to qdrant
 * [ ] Replace JSON file storage with PostgreSQL  
-* [ ] Use LangGraph instead of LangChain  
+* [x] Use LangGraph instead of LangChain
+* [x] Move document search to tools to enable document search only when needed
 * [ ] Implement PostgreSQL checkpointer for persistent chat history  
-* [ ] Add routing to enable document search only when needed
+* [ ] ~~Add routing to enable document search only when needed~~
+
 * [ ] Add appointment search to check doctor's availability
 
 ---
